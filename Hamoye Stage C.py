@@ -15,7 +15,7 @@ import seaborn as sns
 
 
 #Reading in the data
-data1 = pd.read_csv("C:\\Users\\Faith\\Desktop\\Faith Docs\\NFA 2019 public_data.csv")
+data1 = pd.read_csv("https://query.data.world/s/wh6j7rxy2hvrn4ml75ci62apk5hgae.csv")
 data1.head()
 
 
@@ -81,7 +81,7 @@ data1.QScore.value_counts()
 
 
 #More preprocessing
-data1 = data1.drop(columns = ['country_code' , 'country' , 'year'])
+data1 = data1.drop(columns = ['country_code', 'country', 'year'])
 X = data1.drop(columns = 'QScore')
 y = data1['QScore']
 
@@ -91,7 +91,7 @@ y = data1['QScore']
 
 #split the data into training and testing sets
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.3 , random_state= 0 )
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.3, random_state= 0 )
 y_train.value_counts()
 
 
@@ -219,7 +219,7 @@ for train_index, test_index in kf.split(normalised_train_df):
     X_train, X_test = normalised_train_df.iloc[train_index], normalised_train_df.iloc[test_index]
     y_train, y_test = y_balanced[train_index], y_balanced[test_index]
     model = LogisticRegression().fit(X_train, y_train)
-    #save result to list
+    #save the result to list
     f1_scores.append(f1_score(y_true=y_test, y_pred=model.predict(X_test), pos_label= '2A' )*100)
 
 
@@ -236,7 +236,7 @@ for train_index, test_index in skf.split(normalised_train_df, y_balanced):
     X_train, X_test = np.array(normalised_train_df)[train_index], np.array(normalised_train_df)[test_index]
     y_train, y_test = y_balanced[train_index], y_balanced[test_index]
     model = LogisticRegression().fit(X_train, y_train)
-    #save result to list
+    #save the result to list
     f1_scores.append(f1_score(y_true=y_test, y_pred=model.predict(X_test), pos_label= '2A' )) 
 
 
