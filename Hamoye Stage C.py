@@ -250,3 +250,11 @@ scores = cross_val_score(LogisticRegression(), normalised_train_df, y_balanced, 
                          scoring= 'f1_macro' )
 average_score = scores.mean() * 100 
 
+
+#In[26]:
+
+
+#Tree-Based Methods and The Support Vector Machine
+from sklearn.tree import DecisionTreeClassifier
+dec_tree = DecisionTreeClassifier()
+dec_tree.fit(normalised_train_df, y_balanced)
